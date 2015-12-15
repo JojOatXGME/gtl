@@ -1,0 +1,37 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# CMake Results
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# QTCreator Files
+*.user
+
+# ignore temporary files of editors
+*~
+.*.swp
+
+# ignore files from operating system
+Thumbs.db
+.DS_Store
