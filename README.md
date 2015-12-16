@@ -3,11 +3,12 @@ Graphics Tool Library for C++
 The goal of this library is to simplify the work with OpenGL. The
 library was created with OpenGL 3.3 and C++11 in mind. It uses
 `ARB_direct_state_access` and `ARB_separate_shader_objects`. It should
-be possible to use this library with OpenGL 4.1 without extensions. It
-is designed for personal use but other persons can use them too.
+be possible to use this library with OpenGL 4.5 without extensions. It
+is designed for my own personal use but others may use it, too.
 
 Current Features
 ----------------
+
  *  Wrapper classes for some OpenGL Objects:
 
      *  Buffer Object (`gtl::ogl::Buffer` in `gtl/ogl/buffer.h`)
@@ -18,13 +19,13 @@ Current Features
         `gtl/ogl/vertexarray.h`)
 
     More information [below](#wrapper-classes). Note that Program
-    Objects and Shader Objects doesn't use the [OpenGL Object
+    Objects and Shader Objects don't use the [OpenGL Object
     model](https://www.opengl.org/wiki/OpenGL_Object).
 
 Wrapper Classes
 ---------------
 
-Every of this classes has a default constructor which doesn't create
+Every of this classes have a default constructor which doesn't create
 such object in OpenGL. You can create the object with a `create` method
 or with another constructor:
 
@@ -33,8 +34,8 @@ or with another constructor:
     // -- or --
     Buffer buffer(true);
 
-You can check if the instance contains an OpenGL Object except for the
-zero Object.
+You can check if the instance contains an OpenGL Object different from
+the zero Object.
 
     if (buffer) { ...
 

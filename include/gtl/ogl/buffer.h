@@ -70,7 +70,7 @@ public:
 	void flush(GLintptr offset, GLsizeiptr length);
 	bool unmap();
 
-	void getSubData(GLintptr offset, GLsizeiptr size, GLvoid *data);
+	void getSubData(GLintptr offset, GLsizeiptr size, GLvoid *data) const;
 
 	// TODO getParameter
 
@@ -194,7 +194,7 @@ inline bool Buffer::unmap()
 	return glUnmapNamedBuffer(mId);
 }
 
-inline void Buffer::getSubData(GLintptr offset, GLsizeiptr size, GLvoid *data)
+inline void Buffer::getSubData(GLintptr offset, GLsizeiptr size, GLvoid *data) const
 {
 	glGetNamedBufferSubData(mId, offset, size, data);
 }

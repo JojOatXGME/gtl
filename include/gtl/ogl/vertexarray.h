@@ -155,13 +155,17 @@ inline void VertexArray::setVertexBuffer(GLuint bindingindex, const Buffer &buff
 
 inline void VertexArray::setVertexBuffers(GLuint first, GLsizei count, const Buffer *buffers, const GLintptr *offsets, const GLsizei *strides)
 {
-	GLuint bufs[count];
-	// TODO would it be acceptable to do reinterpret_cast<GLuint*>(buffers)
-	// if sizeof(Buffer) == sizeof(GLuint)?
-	for (GLsizei i = 0; i < count; ++i) {
-		bufs[i] = buffers[i].get();
+	if (buffers == nullptr) {
+		glVertexArrayVertexBuffers(mId, first, count, nullptr, nullptr, nullptr);
+	} else {
+		GLuint bufs[count];
+		// TODO would it be acceptable to do reinterpret_cast<GLuint*>(buffers)
+		// if sizeof(Buffer) == sizeof(GLuint)?
+		for (GLsizei i = 0; i < count; ++i) {
+			bufs[i] = buffers[i].get();
+		}
+		glVertexArrayVertexBuffers(mId, first, count, bufs, offsets, strides);
 	}
-	glVertexArrayVertexBuffers(mId, first, count, bufs, offsets, strides);
 }
 
 inline void VertexArray::setAttribFormat(GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
