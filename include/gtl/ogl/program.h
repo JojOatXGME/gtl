@@ -22,6 +22,8 @@ class Program final
 {
 public:
 	Program(bool create);
+	Program(Shader::Type type, const std::string &source);
+	Program(Shader::Type type, GLsizei count, const char **strings);
 	explicit Program(GLuint programName = 0) noexcept;
 	~Program() noexcept;
 
@@ -30,6 +32,8 @@ public:
 	explicit operator bool () const noexcept;
 
 	void create();
+	void create(Shader::Type type, const std::string &source);
+	void create(Shader::Type type, GLsizei count, const char **strings);
 	void reset(GLuint programName = 0) noexcept;
 	GLuint release() noexcept;
 
@@ -40,6 +44,7 @@ public:
 	void detachShader(const Shader &shader);
 	void bindFragDataLocation(GLuint location, const std::string &name);
 	void bindAttribLocation(GLuint location, const std::string &name);
+	void setTransformFeedbackVaryings(GLsizei count, const char **varyings, GLenum bufferMode);
 	void link();
 	void validate();
 
@@ -71,6 +76,18 @@ inline Program::Program(bool create) :
 	}
 }
 
+inline Program::Program(Shader::Type type, const std::string &source) :
+	Program()
+{
+	create(type, source);
+}
+
+inline Program::Program(Shader::Type type, GLsizei count, const char **strings) :
+	Program()
+{
+	create(type, count, strings);
+}
+
 inline Program::Program(GLuint programName) noexcept :
 	mId(programName)
 {
@@ -100,6 +117,17 @@ inline Program::operator bool() const noexcept
 inline void Program::create()
 {
 	reset(glCreateProgram());
+}
+
+inline void Program::create(Shader::Type type, const std::string &source)
+{
+	const char *strings = source.c_str();
+	create(type, 1, &strings);
+}
+
+inline void Program::create(Shader::Type type, GLsizei count, const char **strings)
+{
+	reset(glCreateShaderProgramv(static_cast<GLenum>(type), count, strings));
 }
 
 inline void Program::reset(GLuint programName) noexcept
@@ -145,6 +173,11 @@ inline void Program::bindFragDataLocation(GLuint location, const std::string &na
 inline void Program::bindAttribLocation(GLuint location, const std::string &name)
 {
 	glBindAttribLocation(mId, location, name.c_str());
+}
+
+inline void Program::setTransformFeedbackVaryings(GLsizei count, const char **varyings, GLenum bufferMode)
+{
+	glTransformFeedbackVaryings(mId, count, varyings, bufferMode);
 }
 
 inline void Program::link()

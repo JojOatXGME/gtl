@@ -15,6 +15,8 @@ Current Features
      *  Program Object (`gtl::ogl::Program` in `gtl/ogl/program.h`)
      *  Shader Object (`gtl::ogl::Shader` in `gtl/ogl/shader.h`)
      *  Texture Object (`gtl::ogl::Texture` in `gtl/ogl/texture.h`)
+     *  Transform Feedback Object (`gtl::ogl::TransformFeedback` in
+        `gtl/ogl/transformfeedback.h`)
      *  Vertex Array Object (`gtl::ogl::VertexArray` in
         `gtl/ogl/vertexarray.h`)
 
