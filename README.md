@@ -1,10 +1,13 @@
 Graphics Tool Library for C++
 =============================
-The goal of this library is to simplify the work with OpenGL. The
-library was created with OpenGL 3.3 and C++11 in mind. It uses
-`ARB_direct_state_access` and `ARB_separate_shader_objects`. It should
-be possible to use this library with OpenGL 4.5 without extensions. It
-is designed for my own personal use but others may use it, too.
+
+The goal of this library is to simplify the work with OpenGL but it will
+not provide much abstraction. The library was created with OpenGL 3.3
+and C++11 in mind. It uses `ARB_direct_state_access` and
+`ARB_separate_shader_objects`. It should be possible to use this library
+with OpenGL 4.5 without extensions. I'm using
+[GLEW](http://glew.sourceforge.net/) to get the functions of OpenGL. The
+library is designed for my own personal use but others may use it, too.
 
 Current Features
 ----------------
@@ -22,7 +25,8 @@ Current Features
 
     More information [below](#wrapper-classes). Note that Program
     Objects and Shader Objects don't use the [OpenGL Object
-    model](https://www.opengl.org/wiki/OpenGL_Object).
+    model](https://www.opengl.org/wiki/OpenGL_Object), although they are
+    listed here.
 
 Wrapper Classes
 ---------------
@@ -54,4 +58,5 @@ Object.
     // -- or --
     Buffer buffer(bufferName);
 
-Each of this classes are movable but not copyable.
+Each of this classes are movable but not copyable. The resources are
+freed on destruction.
